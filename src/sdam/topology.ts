@@ -583,7 +583,7 @@ export class Topology extends TypedEventEmitter<TopologyEvents> {
           `Server selection timed out after ${serverSelectionTimeoutMS} ms`,
           this.description
         );
-
+        process.exit();
         waitQueueMember.callback(timeoutError);
       }, serverSelectionTimeoutMS);
     }
