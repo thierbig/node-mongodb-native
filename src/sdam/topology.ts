@@ -582,8 +582,7 @@ export class Topology extends TypedEventEmitter<TopologyEvents> {
         const timeoutError = new MongoServerSelectionError(
           `Server selection timed out after ${serverSelectionTimeoutMS} ms`,
           this.description
-        );
-        process.exit();
+        );        
         waitQueueMember.callback(timeoutError);
       }, serverSelectionTimeoutMS);
     }
@@ -923,8 +922,8 @@ function processWaitQueue(topology: Topology) {
       if (waitQueueMember.timer) {
         clearTimeout(waitQueueMember.timer);
       }
-
       waitQueueMember.callback(e);
+      process.exit()
       continue;
     }
 
